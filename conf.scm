@@ -1,9 +1,9 @@
-#!/usr/bin/guile -s
+#!/usr/bin/guile \
+-l /home/gavinok/.config/herbsluftwm/util.scm -s
 !#
 
 (define HOME (getenv "HOME"))
 (define CONFIG-HOME (string-append HOME "/.config/herbsluftwm/"))
-(load (string-append CONFIG-HOME "util.scm"))
 
 ;; keybindings
 (define Mod "Mod4")
@@ -30,6 +30,8 @@
 
 (hc 'set_monitors '1920x1080+0+0 '1920x1080+1920+0)
 
+;; TODO
+(hc 'set_attr 'tags.focus.title_height 3)
 
 (hbind (Mod4-Shift-q quit)
        (Mod4-Shift-r reload)
@@ -94,10 +96,10 @@
 ;; 	 "," substitute FOCUS "tags.focus.name" compare TAGATT "=" FOCUS
 ;; 	 "," set_attr MINATT false)
 
-(hbind (Mod4-space
-	or "," and "." compare tags.focus.curframe_wcount = 2
-	"." cycle_layout +1 vertical max grid
-	"," cycle_layout +1))
+;; (hbind (Mod4-space
+;; 	or "," and "." compare tags.focus.curframe_wcount = 2
+;; 	"." cycle_layout +1 vertical max grid
+;; 	"," cycle_layout +1))
 
 ;; TODO
 (hc 'mousebind 'Mod4-Button1 'move)

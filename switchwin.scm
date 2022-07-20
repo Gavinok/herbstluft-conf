@@ -1,14 +1,15 @@
 #!/usr/bin/guile \
--e main -s
+-l /home/gavinok/.config/herbsluftwm/util.scm -e main -s
 !#
-(load "./util.scm")
+
 (define (window-is-emacs?)
   (let ((res (hc 'get_attr 'clients.focus.class)))
     (and (string? res) ; Since it can simply return an #:<eof>
          (string= res "Emacs"))))
 
 (define (emacs-winmove direction)
-  (system* "emacsclient" "--eval" (string-append "(windmove-"   direction ")")))
+  (system* "emacsclient" "--eval"
+           (format #f "(windmove-~a)" direction)))
 
 (define (mvnt-cmd dir)
   (if (window-is-emacs?)
