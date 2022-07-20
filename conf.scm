@@ -1,7 +1,9 @@
 #!/usr/bin/guile -s
 !#
 
-(load "./util.scm")
+(define HOME (getenv "HOME"))
+(define CONFIG-HOME (string-append HOME "/.config/herbsluftwm/"))
+(load (string-append CONFIG-HOME "util.scm"))
 
 ;; keybindings
 (define Mod "Mod4")
@@ -53,7 +55,8 @@
 (map (lambda (key-dir)
        (let ((k (symbol->string (car key-dir)))
 	     (dir (symbol->string (cdr key-dir))))
-	 (hc-bind (list (string-append "Mod4-" k) 'spawn "~/.config/herbsluftwm/switchwin.scm" dir)
+	 (hc-bind (list (string-append "Mod4-" k) 'spawn
+			(string-append CONFIG-HOME "switchwin.scm") dir)
 		  (list (string-append "Mod4-Shift-" k) 'shift dir)
 		  (list (string-append "Mod4-Ctrl-" k) 'resize dir))))
      dirbinds)
@@ -132,8 +135,6 @@
 	 (hc-bind (list (string-append "Mod4-" k) 'use_index tag)
 		  (list (string-append "Mod4-Shift-" k) 'move_index tag))))
      tagbinds)
-
-
 ;; TODO
 ;; # hc keybind $Mod-g spawn /home/gavinok/.config/herbsluftwm/tagpicker
 ;; (hc-bind '(Mod4-p spawn "/home/gavinok/.config/herbsluftwm/lemonbar"))
