@@ -1,7 +1,23 @@
 #!/usr/bin/guile \
--l /home/gavinok/.config/herbsluftwm/util.scm -s
+-l ~/.config/herbsluftwm/util.scm -s
 !#
+;; Syntax to prevent all that quoting
+(define-syntax hc-describe
+  (syntax-rules ()
+    ((_ exp ...)
+     (apply hc '(help exp ... )))))
 
+(define-syntax hset
+  (syntax-rules ()
+    ((_ exp ...)
+     (apply hc-set '( exp ... )))))
+
+(define-syntax hbind
+  (syntax-rules ()
+    ((_ exp ...)
+     (apply hc-bind '( exp ... )))))
+
+;; Begining of config
 (define HOME (getenv "HOME"))
 (define CONFIG-HOME (string-append HOME "/.config/herbsluftwm/"))
 

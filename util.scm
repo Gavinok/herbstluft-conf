@@ -40,18 +40,3 @@
        bindings))
 
 
-;; Syntax to prevent all that quoting
-(define-syntax hc-describe
-  (syntax-rules ()
-    ((_ exp ...)
-     (apply hc '(help exp ... )))))
-
-(define-syntax hset
-  (syntax-rules ()
-    ((_ exp ...)
-     (apply hc-set '( exp ... )))))
-
-(define-syntax hbind
-  (syntax-rules ()
-    ((_ exp ...)
-     (apply hc-bind '( exp ... )))))
