@@ -215,3 +215,5 @@
 ;;     '->' keybind "${keys[8]}" chain "${unbind[@]}" , move_index 8 \
 ;;     '->' keybind "${keys[9]}" chain "${unbind[@]}" , move_index 9 \
 ;;     '->' keybind Escape       chain "${unbind[@]}"
+
+(hc-bind `(Mod4-b spawn "/home/gavinok/.config/herbsluftwm/wselect.sh" "bring"))
